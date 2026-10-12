@@ -1,0 +1,36 @@
+# Render Blueprint (optional): Render > New > Blueprint > pick this repo.
+# No secret values live in this file. Variables marked "sync: false" are asked for in the Render dashboard.
+services:
+  - type: web
+    name: skill2job
+    runtime: docker
+    plan: free
+    # NOTE: the free plan has no persistent disk - uploaded CVs/logos in /data are lost on redeploy/restart.
+    # For real users add a paid disk mounted at /data (see DEPLOY.md, "Uploaded files").
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      # ---- required: the app refuses to start without a valid value ----
+      - key: MONGODB_URI
+        sync: false        # your Atlas connection string
+      - key: JWT_SECRET
+        generateValue: true  # Render generates a long random value; do not replace it with a short one
+      - key: ADMIN_EMAIL
+        sync: false        # used only to create the FIRST admin; an existing account is never changed
+      - key: ADMIN_PASSWORD
+        sync: false        # 10+ characters, letters and digits, not a known default
+      # ---- required for payments and emails to work for real users ----
+      - key: APP_BASE_URL
+        sync: false        # your public address, e.g. https://skill2job.onrender.com (no trailing slash)
+      - key: MAIL_USERNAME
+        sync: false        # the sender address (must be verified in Brevo); or set MAIL_FROM instead
+      - key: MAIL_PASSWORD
+        sync: false        # only for SMTP (local). On Render leave it empty and use BREVO_API_KEY instead
+      - key: BREVO_API_KEY
+        sync: false        # Brevo API key: emails go over HTTPS (Render's free plan blocks SMTP ports)
+      # ---- safe defaults, change only on purpose ----
+      - key: SEED_ENABLED
+        value: "false"     # no demo users/jobs/courses in production
+      - key: SSLCOMMERZ_SANDBOX
+        value: "true"      # sandbox = no real money. Live mode needs your own SSLCOMMERZ_STORE_ID / _PASSWORD

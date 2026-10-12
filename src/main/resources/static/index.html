@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find jobs and close your skill gaps | Skill2Job</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tw-config.js"></script>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="nav"></div>
+  <main class="flex-1">
+    <!-- ======================= HERO ======================= -->
+    <section class="cyber-hero" aria-labelledby="heroTitle">
+      <div class="stars" id="stars" aria-hidden="true"></div>
+      <div class="hud-ring hud-left" aria-hidden="true"></div>
+      <div class="hud-ring hud-right" aria-hidden="true"></div>
+      <div id="neonIcons" aria-hidden="true"></div>
+      <div class="circuit-floor-3d" aria-hidden="true"></div>
+      <div class="skyline" id="skyline" aria-hidden="true"></div>
+
+      <div class="relative max-w-5xl mx-auto px-4 pt-20 sm:pt-28 pb-56 text-center flex-1 flex flex-col items-center">
+        <span class="kicker" data-i18n="hero.kicker">Skill-gap matching, not guesswork</span>
+        <h1 id="heroTitle" class="font-display font-bold text-ink leading-[1.08] mt-7 text-[2.5rem] sm:text-6xl lg:text-7xl glow-text">
+          <span data-i18n="hero.lead">Turn your skills into</span>
+          <span id="typeWord" class="grad-text">job offers</span><span class="type-cursor" aria-hidden="true">_</span>
+          <span data-i18n="hero.tail"></span>
+        </h1>
+        <p class="mt-7 text-lg sm:text-xl text-slate-700 max-w-2xl" data-i18n="hero.subtitle">
+          Add your skills once. For every job, Skill2Job shows your match, the skills you are missing,
+          and free courses to close the gap.
+        </p>
+        <div class="mt-10 flex flex-wrap justify-center items-center gap-5" id="heroActions">
+          <a href="/jobs.html" class="cyber-btn" data-i18n="hero.explore">Explore jobs</a>
+          <a href="/register.html" class="btn btn-ghost btn-lg" data-i18n="hero.cta.primary">Create a free account</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= LIVE STATS ======================= -->
+    <section class="max-w-6xl mx-auto px-4 -mt-10 relative z-10">
+      <div class="grad-card p-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center" id="stats">
+        <div><div class="step-num text-4xl" data-stat="jobs">–</div><div class="text-sm text-slate-500 mt-1" data-i18n="home.statJobs">Open jobs</div></div>
+        <div><div class="step-num text-4xl" data-stat="skills">–</div><div class="text-sm text-slate-500 mt-1" data-i18n="home.statSkills">Skills tracked</div></div>
+        <div><div class="step-num text-4xl" data-stat="courses">–</div><div class="text-sm text-slate-500 mt-1" data-i18n="home.statCourses">Free &amp; paid courses</div></div>
+        <div><div class="step-num text-4xl" data-stat="tests">96+</div><div class="text-sm text-slate-500 mt-1" data-i18n="home.statQuestions">Skill-test questions</div></div>
+      </div>
+    </section>
+
+    <!-- ======================= FEATURES ======================= -->
+    <section class="max-w-6xl mx-auto px-4 pt-24">
+      <h2 class="section-title"><span data-i18n="home.featuresTitle">Our Features</span><span class="type-cursor">_</span></h2>
+      <div class="title-bar"></div>
+      <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a href="/quiz.html" class="grad-card feature-card p-6 block">
+          <span class="feature-icon" aria-hidden="true">✅</span>
+          <h3 class="font-display text-xl font-bold text-ink mt-4" data-i18n="home.f.quiz.title">Verified skill tests</h3>
+          <p class="text-slate-600 mt-2" data-i18n="home.f.quiz.body">Take a short MCQ test; pass it and your skill gets a "verified" badge employers can trust.</p>
+        </a>
+        <a href="/roadmap.html" class="grad-card feature-card p-6 block">
+          <span class="feature-icon" aria-hidden="true">🗺️</span>
+          <h3 class="font-display text-xl font-bold text-ink mt-4" data-i18n="home.f.roadmap.title">Learning roadmap</h3>
+          <p class="text-slate-600 mt-2" data-i18n="home.f.roadmap.body">Pick a dream job and get a week-by-week plan of courses that closes your exact gap.</p>
+        </a>
+        <a href="/cv-builder.html" class="grad-card feature-card p-6 block">
+          <span class="feature-icon" aria-hidden="true">📄</span>
+          <h3 class="font-display text-xl font-bold text-ink mt-4" data-i18n="home.f.cv.title">CV builder + PDF</h3>
+          <p class="text-slate-600 mt-2" data-i18n="home.f.cv.body">Your profile, verified skills and projects become a clean CV you can download as PDF.</p>
+        </a>
+        <a href="/mock-interview.html" class="grad-card feature-card p-6 block">
+          <span class="feature-icon" aria-hidden="true">🎤</span>
+          <h3 class="font-display text-xl font-bold text-ink mt-4" data-i18n="home.f.mock.title">Mock interviews</h3>
+          <p class="text-slate-600 mt-2" data-i18n="home.f.mock.body">Practise real interview questions and see which key points your answer covered.</p>
+        </a>
+        <a href="/job-alerts.html" class="grad-card feature-card p-6 block">
+          <span class="feature-icon" aria-hidden="true">🔔</span>
+          <h3 class="font-display text-xl font-bold text-ink mt-4" data-i18n="home.f.alerts.title">Job alerts</h3>
+          <p class="text-slate-600 mt-2" data-i18n="home.f.alerts.body">Save a search once - get an email and a notification when a matching job is posted.</p>
+        </a>
+        <a href="/achievements.html" class="grad-card feature-card p-6 block">
+          <span class="feature-icon" aria-hidden="true">🏆</span>
+          <h3 class="font-display text-xl font-bold text-ink mt-4" data-i18n="home.f.game.title">XP, badges &amp; streaks</h3>
+          <p class="text-slate-600 mt-2" data-i18n="home.f.game.body">Earn XP for learning, keep your streak alive and climb the leaderboard.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- ======================= EXAMPLE REPORT ======================= -->
+    <section class="max-w-6xl mx-auto px-4 pt-24 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="kicker" data-i18n="home.reportKicker">See it in action</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-ink mt-4">
+          <span data-i18n="home.reportTitle">Your skill gap, in one glance</span><span class="type-cursor">_</span>
+        </h2>
+        <p class="text-slate-600 mt-4 max-w-lg" data-i18n="score.body">For each skill: your level ÷ required level (max 1), multiplied by the skill's weight. The sum is divided by the total weight. Missing a required skill marks you as not eligible.</p>
+      </div>
+      <div class="grad-card p-6" aria-label="Example skill-gap report">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <p class="text-sm text-slate-500">Example: Padma Soft Ltd</p>
+            <h3 class="font-display text-xl font-bold text-ink">Junior Java Backend Developer</h3>
+          </div>
+          <span class="match match-high">88.2%</span>
+        </div>
+        <table class="w-full mt-5 text-[15px]" id="demoTable">
+          <thead>
+            <tr class="text-left text-slate-500 text-sm">
+              <th class="font-semibold pb-2">Skill</th><th class="font-semibold pb-2">You vs. required</th><th class="font-semibold pb-2 text-right">Status</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="mt-5 rounded-xl bg-slate-25 p-4 text-sm text-slate-700">
+          <span class="font-semibold text-ink">Learn next:</span> Docker Get Started (free, Docker Docs)
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= 4 EASY STEPS ======================= -->
+    <section class="max-w-6xl mx-auto px-4 pt-24">
+      <h2 class="section-title"><span data-i18n="home.stepsTitle">Your job in</span> <span class="grad-text-warm" data-i18n="home.stepsHighlight">4 easy steps</span></h2>
+      <div class="title-bar"></div>
+      <ol class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <li class="panel p-6">
+          <div class="step-num" data-i18n="home.n1">01</div>
+          <h3 class="font-display text-lg font-bold text-ink mt-3" data-i18n="how.step1.title">Rate your skills</h3>
+          <p class="text-slate-600 mt-2 text-[15px]" data-i18n="how.step1.body">Pick skills from a shared list and set a level from 1 (beginner) to 5 (expert).</p>
+        </li>
+        <li class="panel p-6">
+          <div class="step-num" data-i18n="home.n2">02</div>
+          <h3 class="font-display text-lg font-bold text-ink mt-3" data-i18n="home.step2.title">Prove them</h3>
+          <p class="text-slate-600 mt-2 text-[15px]" data-i18n="home.step2.body">Pass a skill test to turn a self-rating into a verified badge.</p>
+        </li>
+        <li class="panel p-6">
+          <div class="step-num" data-i18n="home.n3">03</div>
+          <h3 class="font-display text-lg font-bold text-ink mt-3" data-i18n="how.step3.title">Close the gap</h3>
+          <p class="text-slate-600 mt-2 text-[15px]" data-i18n="how.step3.body">Missing and weak skills come with course suggestions, free ones first.</p>
+        </li>
+        <li class="panel p-6">
+          <div class="step-num" data-i18n="home.n4">04</div>
+          <h3 class="font-display text-lg font-bold text-ink mt-3" data-i18n="home.step4.title">Apply &amp; get hired</h3>
+          <p class="text-slate-600 mt-2 text-[15px]" data-i18n="home.step4.body">Apply with your match score, practise interviews and chat with employers.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ======================= SUCCESS STORIES ======================= -->
+    <section class="max-w-7xl mx-auto px-4 pt-24 hidden" id="storiesSection">
+      <h2 class="section-title"><span data-i18n="home.storiesTitle">What students say</span><span class="type-cursor">_</span></h2>
+      <div class="title-bar"></div>
+      <p class="text-center text-slate-500 mt-4" data-i18n="home.storiesHint">Approved reviews of companies on Skill2Job.</p>
+      <div class="marquee mt-10" id="stories"></div>
+    </section>
+
+    <!-- ======================= EMPLOYERS ======================= -->
+    <section class="max-w-6xl mx-auto px-4 pt-24">
+      <div class="grad-card p-8 sm:p-12 grid md:grid-cols-[1.4fr_1fr] gap-8 items-center overflow-hidden">
+        <div>
+          <h2 class="font-display text-3xl font-bold text-ink" data-i18n="employers.title">For employers</h2>
+          <p class="text-slate-600 mt-3 max-w-lg" data-i18n="employers.body">Post a job with the skills you need, mark the ones that are required, and see applicants sorted by how well they match.</p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="/register.html?role=EMPLOYER" class="btn btn-cta" data-i18n="employers.cta">Post your first job</a>
+            <a href="/about.html" class="btn btn-ghost" data-i18n="home.learnMore">Learn more</a>
+          </div>
+        </div>
+        <ul class="space-y-3 text-[15px] text-slate-700">
+          <li>📊 <span data-i18n="home.emp1">Hiring funnel &amp; time-to-hire analytics</span></li>
+          <li>✅ <span data-i18n="home.emp2">Applicants with quiz-verified skills</span></li>
+          <li>📅 <span data-i18n="home.emp3">Interview scheduling and chat</span></li>
+          <li>⭐ <span data-i18n="home.emp4">Company page with ratings &amp; reviews</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <div id="footer"></div>
+  <script src="/js/app.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/pages/index.js"></script>
+</body>
+</html>

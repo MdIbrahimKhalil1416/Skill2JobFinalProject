@@ -1,0 +1,73 @@
+[
+  {"skill":"Java","difficulty":2,"question":"What is the difference between an abstract class and an interface in Java?","keyPoints":["abstract class can hold state and constructors","interface defines a contract","a class can implement multiple interfaces but extend only one class","default methods in interfaces"]},
+  {"skill":"Java","difficulty":3,"question":"Explain how HashMap works internally.","keyPoints":["hashCode decides the bucket","equals resolves collisions","buckets hold linked lists or trees","resize when load factor is exceeded"]},
+  {"skill":"Java","difficulty":3,"question":"What are checked and unchecked exceptions, and when would you use each?","keyPoints":["checked must be caught or declared","unchecked extend RuntimeException","checked for recoverable conditions","unchecked for programming errors"]},
+
+  {"skill":"Spring Boot","difficulty":2,"question":"What is dependency injection and how does Spring Boot use it?","keyPoints":["objects receive their dependencies","Spring container creates beans","constructor injection","loose coupling and easier testing"]},
+  {"skill":"Spring Boot","difficulty":3,"question":"How would you design error handling for a REST API in Spring Boot?","keyPoints":["RestControllerAdvice with ExceptionHandler","consistent error response body","correct HTTP status codes","validation errors per field"]},
+  {"skill":"Spring Boot","difficulty":3,"question":"How do you secure a Spring Boot REST API with JWT?","keyPoints":["login returns a signed token","filter validates token on each request","stateless session","role checks with PreAuthorize"]},
+
+  {"skill":"Python","difficulty":2,"question":"What is the difference between a list and a tuple in Python?","keyPoints":["list is mutable","tuple is immutable","tuple can be a dictionary key","tuples are slightly faster"]},
+  {"skill":"Python","difficulty":3,"question":"Explain list comprehensions and when you would use them.","keyPoints":["concise way to build lists","expression and for clause","optional if filter","more readable than loops for simple transforms"]},
+  {"skill":"Python","difficulty":3,"question":"How does Python manage memory?","keyPoints":["reference counting","garbage collector for cycles","private heap","objects freed when no references remain"]},
+
+  {"skill":"JavaScript","difficulty":2,"question":"Explain the difference between var, let and const.","keyPoints":["var is function scoped","let and const are block scoped","const cannot be reassigned","hoisting and temporal dead zone"]},
+  {"skill":"JavaScript","difficulty":3,"question":"What is a closure? Give an example use.","keyPoints":["function remembers its outer scope","inner function accesses outer variables","data privacy","counters or callbacks"]},
+  {"skill":"JavaScript","difficulty":3,"question":"How do Promises and async/await work?","keyPoints":["Promise represents a future value","then and catch","async function returns a Promise","await pauses until it settles"]},
+
+  {"skill":"HTML","difficulty":1,"question":"Why is semantic HTML important?","keyPoints":["meaningful elements like nav header main","accessibility for screen readers","better SEO","easier maintenance"]},
+  {"skill":"HTML","difficulty":2,"question":"How do you make a form accessible?","keyPoints":["label linked to input","required and error messages","keyboard navigation","aria attributes when needed"]},
+  {"skill":"HTML","difficulty":2,"question":"What is the difference between block and inline elements?","keyPoints":["block starts on a new line","block takes full width","inline flows within text","inline ignores width and height"]},
+
+  {"skill":"CSS","difficulty":2,"question":"Explain the CSS box model.","keyPoints":["content","padding","border","margin","box-sizing border-box"]},
+  {"skill":"CSS","difficulty":3,"question":"When would you use Flexbox versus Grid?","keyPoints":["flexbox for one dimension","grid for two dimensions","alignment and spacing","layout of components versus whole pages"]},
+  {"skill":"CSS","difficulty":3,"question":"How do you build a responsive layout?","keyPoints":["media queries","relative units","mobile first","flexible images and grids"]},
+
+  {"skill":"React","difficulty":2,"question":"What is the difference between props and state?","keyPoints":["props come from the parent","state is owned by the component","props are read only","changing state triggers re-render"]},
+  {"skill":"React","difficulty":3,"question":"Explain useEffect and its dependency array.","keyPoints":["runs side effects after render","dependency array controls when it runs","empty array runs once","cleanup function"]},
+  {"skill":"React","difficulty":3,"question":"How would you improve performance of a slow React app?","keyPoints":["avoid unnecessary re-renders","memo useMemo useCallback","stable keys for lists","code splitting and lazy loading"]},
+
+  {"skill":"SQL","difficulty":2,"question":"Explain the difference between WHERE and HAVING.","keyPoints":["WHERE filters rows","HAVING filters groups","HAVING used with GROUP BY","aggregate functions in HAVING"]},
+  {"skill":"SQL","difficulty":3,"question":"What are database indexes and what are their trade-offs?","keyPoints":["speed up reads and lookups","slow down inserts and updates","use extra storage","choose columns used in WHERE and JOIN"]},
+  {"skill":"SQL","difficulty":3,"question":"What is normalization?","keyPoints":["reduce duplicate data","split into related tables","normal forms","foreign keys keep relations"]},
+
+  {"skill":"MongoDB","difficulty":2,"question":"When would you choose MongoDB over a relational database?","keyPoints":["flexible schema","document model fits nested data","horizontal scaling","fewer joins when data is read together"]},
+  {"skill":"MongoDB","difficulty":3,"question":"How do you decide between embedding and referencing documents?","keyPoints":["embed data read together","embed small bounded data","reference large or unbounded data","reference data shared by many documents"]},
+  {"skill":"MongoDB","difficulty":3,"question":"What is the aggregation pipeline?","keyPoints":["sequence of stages","match group sort","unwind arrays","transform and summarize data in the database"]},
+
+  {"skill":"Git","difficulty":1,"question":"Describe your everyday Git workflow on a team.","keyPoints":["create a feature branch","commit small changes","pull request and code review","merge into main"]},
+  {"skill":"Git","difficulty":2,"question":"How do you resolve a merge conflict?","keyPoints":["find conflict markers","decide which changes to keep","test after resolving","commit the resolution"]},
+  {"skill":"Git","difficulty":3,"question":"What is the difference between merge and rebase?","keyPoints":["merge creates a merge commit","rebase rewrites history linearly","do not rebase shared branches","cleaner history with rebase"]},
+
+  {"skill":"Docker","difficulty":2,"question":"What is the difference between an image and a container?","keyPoints":["image is a read-only template","container is a running instance","many containers from one image","containers are isolated"]},
+  {"skill":"Docker","difficulty":3,"question":"How would you write a good Dockerfile for a Java app?","keyPoints":["multi-stage build","small base image","copy only the jar","non-root user and exposed port"]},
+  {"skill":"Docker","difficulty":3,"question":"How do containers differ from virtual machines?","keyPoints":["containers share the host kernel","lighter and faster to start","virtual machines include a full operating system","less isolation than virtual machines"]},
+
+  {"skill":"REST API","difficulty":2,"question":"What makes an API RESTful?","keyPoints":["resources identified by URLs","HTTP methods for actions","stateless requests","proper status codes"]},
+  {"skill":"REST API","difficulty":3,"question":"How would you version and paginate a REST API?","keyPoints":["version in the path or header","page and size parameters","return total count","stable sort order"]},
+  {"skill":"REST API","difficulty":3,"question":"What is the difference between PUT and PATCH?","keyPoints":["PUT replaces the whole resource","PATCH updates part of it","PUT is idempotent","PATCH sends only changed fields"]},
+
+  {"skill":"Data Structures & Algorithms","difficulty":2,"question":"When would you use a hash map instead of an array?","keyPoints":["fast lookup by key","constant average time","no index order needed","handle collisions"]},
+  {"skill":"Data Structures & Algorithms","difficulty":3,"question":"Explain Big-O notation with an example.","keyPoints":["describes growth of time or space","worst case","O(n) linear loop","O(log n) binary search"]},
+  {"skill":"Data Structures & Algorithms","difficulty":3,"question":"How would you detect a cycle in a linked list?","keyPoints":["two pointers","slow and fast pointer","they meet if there is a cycle","constant extra space"]},
+
+  {"skill":"OOP","difficulty":2,"question":"Explain the four pillars of OOP.","keyPoints":["encapsulation","inheritance","polymorphism","abstraction"]},
+  {"skill":"OOP","difficulty":3,"question":"What is polymorphism? Give a real example.","keyPoints":["same interface many implementations","method overriding","runtime decides which method","example like Shape area"]},
+  {"skill":"OOP","difficulty":3,"question":"Explain the SOLID principles briefly.","keyPoints":["single responsibility","open closed","liskov substitution","interface segregation","dependency inversion"]},
+
+  {"skill":"Linux","difficulty":2,"question":"How would you find which process is using a lot of CPU?","keyPoints":["top or htop","ps command","sort by CPU","kill if needed"]},
+  {"skill":"Linux","difficulty":2,"question":"Explain Linux file permissions.","keyPoints":["read write execute","owner group others","chmod changes permissions","chown changes owner"]},
+  {"skill":"Linux","difficulty":3,"question":"How do you search logs for errors from the terminal?","keyPoints":["grep for a pattern","tail to follow the end","pipes to combine commands","less to page through"]},
+
+  {"skill":"Node.js","difficulty":2,"question":"What is the event loop in Node.js?","keyPoints":["single thread","non-blocking input output","callbacks queued and executed","handles many connections"]},
+  {"skill":"Node.js","difficulty":3,"question":"How do you handle errors in an Express app?","keyPoints":["error handling middleware","try catch with async await","consistent error response","correct status codes"]},
+  {"skill":"Node.js","difficulty":3,"question":"How would you keep secrets out of a Node.js codebase?","keyPoints":["environment variables","dotenv file not committed","gitignore","secret manager in production"]},
+
+  {"skill":"Communication","difficulty":1,"question":"Tell me about yourself.","keyPoints":["education and background","relevant skills","a project or achievement","why this role"]},
+  {"skill":"Communication","difficulty":2,"question":"Describe a time you had a disagreement in a team project. What did you do?","keyPoints":["describe the situation","listened to the other view","found a compromise or used data","result and what you learned"]},
+  {"skill":"Communication","difficulty":2,"question":"How do you explain a technical idea to a non-technical person?","keyPoints":["avoid jargon","use an analogy","check understanding","focus on the benefit"]},
+
+  {"skill":"Problem Solving","difficulty":2,"question":"Walk me through how you debug a bug you cannot reproduce easily.","keyPoints":["gather logs and details","reproduce in isolation","form and test hypotheses","fix and add a test"]},
+  {"skill":"Problem Solving","difficulty":2,"question":"Tell me about the hardest problem you solved in a project.","keyPoints":["explain the problem","steps you took","trade-offs considered","measurable result"]},
+  {"skill":"Problem Solving","difficulty":3,"question":"How do you approach a task when the requirements are unclear?","keyPoints":["ask clarifying questions","write down assumptions","build a small version first","get feedback early"]}
+]

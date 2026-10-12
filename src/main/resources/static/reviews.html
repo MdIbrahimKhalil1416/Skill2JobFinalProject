@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Company reviews | Skill2Job</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tw-config.js"></script>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="nav"></div>
+  <main class="flex-1 max-w-5xl w-full mx-auto px-4 py-8">
+    <h1 class="font-display text-3xl sm:text-4xl font-bold text-ink"><span data-i18n="rev.title">Company reviews</span><span class="type-cursor">_</span></h1>
+    <p class="text-slate-600 mt-1 max-w-2xl" data-i18n="rev.subtitle">Share your interview or work experience to help other students. You can review a company after it responded to your application or interviewed you. Reviews are checked by an admin before they go public.</p>
+    <div id="list" class="mt-6 grid gap-4"></div>
+  </main>
+  <div id="footer"></div>
+  <script src="/js/app.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/pages/reviews.js"></script>
+</body>
+</html>

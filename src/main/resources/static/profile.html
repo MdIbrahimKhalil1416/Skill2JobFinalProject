@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My skills | Skill2Job</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tw-config.js"></script>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="nav"></div>
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-8">
+    <h1 class="font-display text-3xl font-bold text-ink" data-i18n="profile.title">My skills and profile</h1>
+    <p id="welcome" class="hidden mt-3 panel p-4 bg-brand-light text-brand-dark" data-i18n="profile.welcome">
+      Welcome! Start by adding the skills you have. Be honest with the levels: the match score depends on them.
+    </p>
+
+    <div class="mt-6 grid lg:grid-cols-5 gap-6">
+      <section class="panel p-5 lg:col-span-3">
+        <h2 class="font-display text-lg font-bold text-ink" data-i18n="profile.skillsHeading">Skills</h2>
+        <p class="text-sm text-slate-500 mt-1" data-i18n="profile.skillsHint">1 = beginner, 3 = can work on it alone, 5 = expert.</p>
+
+        <form id="addSkillForm" class="mt-4 grid sm:grid-cols-[1fr_auto_auto] gap-3 items-end" novalidate>
+          <div>
+            <label class="label" for="skillInput" data-i18n="profile.skillLabel">Skill</label>
+            <input class="field" id="skillInput" list="skillList" placeholder="Type a skill, e.g. ReactJS" autocomplete="off">
+            <datalist id="skillList"></datalist>
+          </div>
+          <div>
+            <span class="label" id="levelLabel" data-i18n="common.level">Level</span>
+            <div class="pips h-[42px] items-center" id="levelPicker" role="radiogroup" aria-labelledby="levelLabel"></div>
+          </div>
+          <button class="btn btn-brand" type="submit" id="addBtn" data-i18n="common.addSkill">Add skill</button>
+        </form>
+        <p id="skillHint" class="text-sm text-slate-500 mt-2 min-h-[20px]"></p>
+
+        <div id="skills" class="mt-4"></div>
+      </section>
+
+      <section class="panel p-5 lg:col-span-2">
+        <h2 class="font-display text-lg font-bold text-ink" data-i18n="profile.profileHeading">Profile</h2>
+        <form id="profileForm" class="mt-4 space-y-4" novalidate>
+          <div><label class="label" for="fullName" data-i18n="common.fullName">Full name</label><input class="field" id="fullName" name="fullName" maxlength="80"></div>
+          <div><label class="label" for="department" data-i18n="common.department">Department</label><input class="field" id="department" name="department" maxlength="80" placeholder="e.g. CSE"></div>
+          <div class="grid grid-cols-2 gap-3">
+            <div><label class="label" for="cgpa" data-i18n="profile.cgpa">CGPA</label><input class="field" id="cgpa" name="cgpa" type="number" step="0.01" min="0" max="4"></div>
+            <div><label class="label" for="graduationYear" data-i18n="profile.graduationYear">Graduation year</label><input class="field" id="graduationYear" name="graduationYear" type="number" min="2000" max="2100"></div>
+          </div>
+          <div><label class="label" for="bio" data-i18n="profile.bio">About you</label><textarea class="field" id="bio" name="bio" rows="4" maxlength="500"></textarea></div>
+          <div class="pt-2 border-t border-slate-100">
+            <h3 class="label" data-i18n="profile.portfolioLinks">Portfolio links</h3>
+            <div class="space-y-3 mt-2">
+              <input class="field" name="githubUrl" placeholder="https://github.com/you">
+              <input class="field" name="linkedinUrl" placeholder="https://linkedin.com/in/you">
+              <input class="field" name="websiteUrl" placeholder="https://your-site.com">
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit" id="saveProfileBtn" data-i18n="common.saveProfile">Save profile</button>
+        </form>
+        <div class="mt-5 pt-5 border-t border-slate-100">
+          <h3 class="label" data-i18n="profile.cvHeading">CV / Resume</h3>
+          <div id="cvBox" class="text-sm text-slate-600 mt-1"></div>
+          <div class="mt-3">
+            <input type="file" id="cvFileInput" name="cv" accept=".pdf,.doc,.docx" class="hidden">
+            <label for="cvFileInput" id="cvDropzone" class="dropzone block">
+              <p class="font-semibold text-ink" id="cvDropzoneLabel">Drop your CV here, or click to choose a file</p>
+              <p class="text-xs text-slate-500 mt-1">PDF, DOC or DOCX, up to 5 MB</p>
+            </label>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel p-5 mt-6">
+      <h2 class="font-display text-lg font-bold text-ink" data-i18n="profile.courseProgressHeading">Course progress</h2>
+      <p class="text-sm text-slate-500 mt-1" data-i18n="profile.courseProgressHint">Mark a course "In Progress" or "Completed" to track it here.</p>
+      <form id="courseProgressForm" class="mt-4 grid sm:grid-cols-[2fr_1fr_auto] gap-3 items-end" novalidate>
+        <div><label class="label" for="courseSelect" data-i18n="profile.courseLabel">Course</label><select class="field" id="courseSelect" name="courseId"></select></div>
+        <div><label class="label" for="statusSelect" data-i18n="common.status">Status</label>
+          <select class="field" id="statusSelect" name="status">
+            <option value="IN_PROGRESS" data-i18n="profile.statusInProgress">In Progress</option>
+            <option value="COMPLETED" data-i18n="profile.statusCompleted">Completed</option>
+          </select></div>
+        <button class="btn btn-brand" type="submit" data-i18n="profile.trackBtn">Track</button>
+      </form>
+      <div id="courseProgressList" class="mt-4"></div>
+    </section>
+  </main>
+  <div id="footer"></div>
+  <script src="/js/app.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/pages/profile.js"></script>
+</body>
+</html>

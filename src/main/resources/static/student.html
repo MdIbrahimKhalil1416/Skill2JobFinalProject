@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard | Skill2Job</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tw-config.js"></script>
+  <link rel="stylesheet" href="/css/app.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="nav"></div>
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-8">
+    <h1 class="font-display text-3xl font-bold text-ink" id="greeting">Your dashboard</h1>
+    <div id="setupHint" class="hidden mt-4 panel p-4 border-weak/40 bg-amber-50 text-amber-900">
+      <span data-i18n="student.setupHint">Add your skills so we can calculate your match for each job.</span>
+      <a href="/profile.html" class="font-semibold underline ml-1" data-i18n="student.addSkillsLink">Add skills</a>
+    </div>
+
+    <div id="stats" class="mt-6 grid grid-cols-2 lg:grid-cols-4 gap-4"></div>
+
+    <div id="growth" class="mt-6 grid md:grid-cols-3 gap-4"></div>
+
+    <section class="mt-8">
+      <h2 class="font-display text-lg font-bold text-ink" data-i18n="student.tools">Career tools</h2>
+      <div class="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3">
+        <a href="/quiz.html" class="feature-card p-4 block"><div class="text-2xl">✅</div><div class="font-semibold text-ink mt-2" data-i18n="nav.skillTests">Skill tests</div><div class="text-xs text-slate-500" data-i18n="student.toolQuiz">Get verified badges</div></a>
+        <a href="/roadmap.html" class="feature-card p-4 block"><div class="text-2xl">🗺️</div><div class="font-semibold text-ink mt-2" data-i18n="nav.roadmap">Roadmap</div><div class="text-xs text-slate-500" data-i18n="student.toolRoadmap">Week-by-week learning plan</div></a>
+        <a href="/cv-builder.html" class="feature-card p-4 block"><div class="text-2xl">📄</div><div class="font-semibold text-ink mt-2" data-i18n="nav.cvBuilder">CV builder</div><div class="text-xs text-slate-500" data-i18n="student.toolCv">Build and export a PDF CV</div></a>
+        <a href="/mock-interview.html" class="feature-card p-4 block"><div class="text-2xl">🎤</div><div class="font-semibold text-ink mt-2" data-i18n="nav.mockInterview">Mock interview</div><div class="text-xs text-slate-500" data-i18n="student.toolMock">Practise real questions</div></a>
+        <a href="/job-alerts.html" class="feature-card p-4 block"><div class="text-2xl">🔔</div><div class="font-semibold text-ink mt-2" data-i18n="nav.jobAlerts">Job alerts</div><div class="text-xs text-slate-500" data-i18n="student.toolAlerts">Get notified of new jobs</div></a>
+        <a href="/achievements.html" class="feature-card p-4 block"><div class="text-2xl">🏅</div><div class="font-semibold text-ink mt-2" data-i18n="nav.achievements">Achievements</div><div class="text-xs text-slate-500" data-i18n="student.toolAch">Badges, XP and streaks</div></a>
+        <a href="/leaderboard.html" class="feature-card p-4 block"><div class="text-2xl">🏆</div><div class="font-semibold text-ink mt-2" data-i18n="nav.leaderboard">Leaderboard</div><div class="text-xs text-slate-500" data-i18n="student.toolLb">See the top learners</div></a>
+        <a href="/premium.html" class="feature-card p-4 block"><div class="text-2xl">💎</div><div class="font-semibold text-ink mt-2" data-i18n="nav.premium">Student Pro</div><div class="text-xs text-slate-500" data-i18n="student.toolPro">Faster retakes, more alerts</div></a>
+        <a href="/reviews.html" class="feature-card p-4 block"><div class="text-2xl">⭐</div><div class="font-semibold text-ink mt-2" data-i18n="nav.reviews">Company reviews</div><div class="text-xs text-slate-500" data-i18n="student.toolReviews">Rate where you applied</div></a>
+      </div>
+    </section>
+
+    <div class="mt-8 grid lg:grid-cols-5 gap-6">
+      <section class="panel p-5 lg:col-span-3">
+        <div class="flex items-center justify-between">
+          <h2 class="font-display text-lg font-bold text-ink" data-i18n="student.bestMatches">Best matches for you</h2>
+          <a href="/jobs.html" class="text-sm font-semibold text-brand" data-i18n="student.seeAllJobs">See all jobs</a>
+        </div>
+        <div id="topMatches" class="mt-3"></div>
+      </section>
+      <section class="panel p-5 lg:col-span-2">
+        <h2 class="font-display text-lg font-bold text-ink" data-i18n="student.missingSkillsHeading">Skills most jobs ask for that you don't have</h2>
+        <p class="text-sm text-slate-500 mt-1" data-i18n="student.missingSkillsHint">Number of open jobs that need each skill.</p>
+        <div class="mt-4 h-64"><canvas id="missingChart" aria-label="Most missing skills chart"></canvas></div>
+        <div id="missingEmpty"></div>
+      </section>
+    </div>
+
+    <section class="panel p-5 mt-6">
+      <h2 class="font-display text-lg font-bold text-ink" data-i18n="student.applicationsHeading">Your applications</h2>
+      <div id="appStatus" class="mt-3 flex flex-wrap gap-3"></div>
+    </section>
+  </main>
+  <div id="footer"></div>
+  <script src="/js/app.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/pages/student.js"></script>
+</body>
+</html>

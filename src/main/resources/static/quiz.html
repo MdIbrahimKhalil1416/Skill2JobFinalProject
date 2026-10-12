@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skill tests | Skill2Job</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tw-config.js"></script>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="nav"></div>
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-8">
+    <div id="listView">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <h1 class="font-display text-3xl sm:text-4xl font-bold text-ink"><span data-i18n="quiz.title">Skill tests</span><span class="type-cursor">_</span></h1>
+          <p class="text-slate-600 mt-1 max-w-2xl" data-i18n="quiz.subtitle">Pass a short multiple-choice test (60% or more) to verify a skill. Verified skills get a badge that employers see.</p>
+        </div>
+        <a href="/achievements.html" class="btn btn-ghost btn-sm">🏅 <span data-i18n="nav.achievements">Achievements</span></a>
+      </div>
+      <div class="mt-5 grid sm:grid-cols-3 gap-3 text-sm">
+        <div class="panel p-4">⏱️ <span data-i18n="quiz.rule1">5 questions, 10 minutes per test</span></div>
+        <div class="panel p-4">🎯 <span data-i18n="quiz.rule2">60%+ verifies the skill; 90%+ proves level 5</span></div>
+        <div class="panel p-4">🔁 <span data-i18n="quiz.rule3">You can retake a test 30 minutes after starting it</span></div>
+      </div>
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <div class="flex gap-1" role="tablist">
+          <button type="button" class="tab active" data-filter="mine" data-i18n="quiz.filterMine">My skills first</button>
+          <button type="button" class="tab" data-filter="verified" data-i18n="quiz.filterVerified">Verified</button>
+          <button type="button" class="tab" data-filter="todo" data-i18n="quiz.filterTodo">Not verified yet</button>
+        </div>
+        <input id="search" class="field max-w-xs" type="search" data-i18n-placeholder="quiz.search" placeholder="Search a skill">
+      </div>
+      <div id="skills" class="mt-5 grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+      <section class="panel p-5 mt-8">
+        <h2 class="font-display text-lg font-bold text-ink" data-i18n="quiz.historyTitle">Recent attempts</h2>
+        <div id="history" class="mt-3 overflow-x-auto"></div>
+      </section>
+    </div>
+
+    <div id="testView" class="hidden">
+      <div class="grad-card p-5 sticky top-20 z-20 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <p class="text-sm text-slate-500" data-i18n="quiz.testOf">Skill test</p>
+          <h1 class="font-display text-2xl font-bold text-ink" id="testSkill"></h1>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="text-sm text-slate-500"><span id="answeredCount">0</span>/<span id="totalCount">0</span> <span data-i18n="quiz.answered">answered</span></span>
+          <span class="match match-mid text-lg" id="timer" aria-live="polite">10:00</span>
+        </div>
+      </div>
+      <form id="testForm" class="mt-6 space-y-4" novalidate></form>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <button type="button" class="btn btn-primary btn-lg" id="submitTest" data-i18n="quiz.submit">Submit answers</button>
+        <button type="button" class="btn btn-ghost" id="leaveTest" data-i18n="quiz.leave">Leave (keeps running)</button>
+      </div>
+    </div>
+
+    <div id="resultView" class="hidden"></div>
+  </main>
+  <div id="footer"></div>
+  <script src="/js/app.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/pages/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+org.springframework.boot.diagnostics.FailureAnalyzer=\
+com.skill2job.config.MongoConnectionFailureAnalyzer,\
+com.skill2job.config.MongoAuthFailureAnalyzer,\
+com.skill2job.config.ProductionConfigFailureAnalyzer

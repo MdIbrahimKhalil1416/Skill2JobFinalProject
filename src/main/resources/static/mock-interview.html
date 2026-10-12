@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mock interview practice | Skill2Job</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tw-config.js"></script>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="nav"></div>
+  <main class="flex-1 max-w-5xl w-full mx-auto px-4 py-8">
+    <div id="setupView">
+      <h1 class="font-display text-3xl sm:text-4xl font-bold text-ink"><span data-i18n="mock.title">Mock interview practice</span><span class="type-cursor">_</span></h1>
+      <p class="text-slate-600 mt-1 max-w-2xl" data-i18n="mock.subtitle">Answer real interview questions in writing, rate yourself, then see which key points a strong answer covers. Feedback is rule-based; an AI reviewer can be added later.</p>
+      <section class="grad-card p-6 mt-6">
+        <h2 class="font-display text-lg font-bold text-ink" data-i18n="mock.pickSkills">1. Pick up to 3 skills</h2>
+        <div id="skillChips" class="mt-3 flex flex-wrap gap-2"></div>
+        <div class="mt-6 flex flex-wrap items-end gap-4">
+          <div>
+            <label class="label" for="count" data-i18n="mock.count">2. Number of questions</label>
+            <select id="count" class="field w-40"><option>3</option><option selected>5</option><option>6</option><option>8</option></select>
+          </div>
+          <button type="button" class="btn btn-primary btn-lg" id="startBtn" data-i18n="mock.start">Start practice</button>
+        </div>
+      </section>
+      <section class="panel p-5 mt-8">
+        <h2 class="font-display text-lg font-bold text-ink" data-i18n="mock.history">Past sessions</h2>
+        <div id="history" class="mt-3 overflow-x-auto"></div>
+      </section>
+    </div>
+
+    <div id="sessionView" class="hidden">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <p class="text-sm text-slate-500"><span data-i18n="mock.question">Question</span> <span id="qNum"></span> / <span id="qTotal"></span></p>
+        <span class="text-sm text-slate-500">⏱️ <span id="qTimer">0:00</span> · <span data-i18n="mock.timerHint">aim for about 2 minutes</span></span>
+      </div>
+      <div class="bar mt-2"><span id="qProgress" style="width:0"></span></div>
+      <article class="grad-card p-6 mt-5">
+        <span class="kicker" id="qSkill"></span>
+        <h2 class="font-display text-2xl font-bold text-ink mt-4" id="qText"></h2>
+        <label class="label mt-6" for="answer" data-i18n="mock.yourAnswer">Your answer</label>
+        <textarea id="answer" class="field" rows="8" maxlength="4000" data-i18n-placeholder="mock.answerPh" placeholder="Answer as you would in the interview: definition, how it works, an example..."></textarea>
+        <div class="text-xs text-slate-500 mt-1"><span id="wordCount">0</span> <span data-i18n="mock.words">words</span></div>
+        <div class="mt-5">
+          <span class="label" data-i18n="mock.selfRate">How confident was your answer?</span>
+          <div class="flex gap-2 mt-1" id="rating" role="radiogroup" aria-label="Self rating"></div>
+        </div>
+      </article>
+      <div class="mt-5 flex flex-wrap justify-between gap-3">
+        <button type="button" class="btn btn-ghost" id="prevBtn" data-i18n="mock.prev">Previous</button>
+        <div class="flex gap-3">
+          <button type="button" class="btn btn-primary" id="nextBtn" data-i18n="mock.next">Next question</button>
+          <button type="button" class="btn btn-cta hidden" id="finishBtn" data-i18n="mock.finish">Finish and get feedback</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="resultView" class="hidden"></div>
+  </main>
+  <div id="footer"></div>
+  <script src="/js/app.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/pages/mock-interview.js"></script>
+</body>
+</html>

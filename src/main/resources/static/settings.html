@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Account settings | Skill2Job</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tw-config.js"></script>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="nav"></div>
+  <main class="flex-1 max-w-3xl w-full mx-auto px-4 py-8">
+    <h1 class="font-display text-3xl sm:text-4xl font-bold text-ink"><span data-i18n="nav.settings">Account settings</span><span class="type-cursor">_</span></h1>
+    <section class="grad-card p-6 mt-6" id="account"></section>
+
+    <form id="pwForm" class="panel p-6 mt-6 space-y-4" novalidate>
+      <h2 class="font-display text-lg font-bold text-ink" data-i18n="set.changePw">Change password</h2>
+      <p class="text-sm text-slate-500" data-i18n="set.changePwHint">After the change, every other device where you are logged in is signed out.</p>
+      <div><label class="label" for="cur" data-i18n="set.current">Current password</label>
+        <input class="field" id="cur" type="password" autocomplete="current-password" maxlength="72"></div>
+      <div class="grid sm:grid-cols-2 gap-3">
+        <div><label class="label" for="new1" data-i18n="fp.newPw">New password</label>
+          <input class="field" id="new1" type="password" autocomplete="new-password" minlength="6" maxlength="72"></div>
+        <div><label class="label" for="new2" data-i18n="fp.confirmPw">Confirm new password</label>
+          <input class="field" id="new2" type="password" autocomplete="new-password" minlength="6" maxlength="72"></div>
+      </div>
+      <p id="pwErr" class="hidden text-sm text-miss" role="alert"></p>
+      <div class="flex flex-wrap items-center gap-3">
+        <button class="btn btn-primary" type="submit" id="pwBtn" data-i18n="set.update">Update password</button>
+        <a href="/forgot-password.html" class="text-sm text-brand-dark font-semibold" data-i18n="login.forgot">Forgot password?</a>
+      </div>
+    </form>
+
+    <section class="panel p-6 mt-6">
+      <h2 class="font-display text-lg font-bold text-ink" data-i18n="set.language">Language</h2>
+      <p class="text-sm text-slate-500 mt-1" data-i18n="set.languageHint">The whole interface switches between English and Bangla.</p>
+      <div class="mt-3 flex gap-2">
+        <button type="button" class="btn btn-ghost" data-lang-btn="en">English</button>
+        <button type="button" class="btn btn-ghost" data-lang-btn="bn">বাংলা</button>
+      </div>
+    </section>
+  </main>
+  <div id="footer"></div>
+  <script src="/js/app.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/pages/settings.js"></script>
+</body>
+</html>

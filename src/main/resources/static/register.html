@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign up | Skill2Job</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tw-config.js"></script>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="nav"></div>
+  <main class="flex-1 flex items-start justify-center px-4 py-12">
+    <div class="w-full max-w-md">
+      <h1 class="font-display text-3xl font-bold text-ink" data-i18n="register.title">Create your account</h1>
+      <form id="regForm" class="panel p-6 mt-6 space-y-4" novalidate enctype="multipart/form-data">
+        <fieldset>
+          <legend class="label" data-i18n="register.iam">I am</legend>
+          <div class="grid grid-cols-2 gap-2" id="roleBox">
+            <label class="btn btn-ghost has-[:checked]:bg-ink has-[:checked]:text-deep">
+              <input class="sr-only" type="radio" name="role" value="STUDENT" checked> <span data-i18n="register.role.student">A student</span>
+            </label>
+            <label class="btn btn-ghost has-[:checked]:bg-ink has-[:checked]:text-deep">
+              <input class="sr-only" type="radio" name="role" value="EMPLOYER"> <span data-i18n="register.role.employer">An employer</span>
+            </label>
+          </div>
+        </fieldset>
+        <div>
+          <label class="label" for="name" data-i18n="common.fullName">Full name</label>
+          <input class="field" id="name" name="name" autocomplete="name" maxlength="80" required>
+        </div>
+        <div id="companyRow" class="hidden">
+          <label class="label" for="companyName" data-i18n="common.companyName">Company name</label>
+          <input class="field" id="companyName" name="companyName" maxlength="120">
+        </div>
+        <div>
+          <label class="label" for="email" data-i18n="common.email">Email</label>
+          <input class="field" id="email" name="email" type="email" autocomplete="username" maxlength="120" required>
+        </div>
+        <div>
+          <label class="label" for="password" data-i18n="common.password">Password</label>
+          <input class="field" id="password" name="password" type="password" autocomplete="new-password" minlength="6" maxlength="72" required>
+          <p class="text-xs text-slate-500 mt-1" data-i18n="register.passwordHint">At least 6 characters.</p>
+        </div>
+        <div id="cvRow">
+          <label class="label" for="cv" data-i18n="register.cvLabel">CV / Resume (optional)</label>
+          <input class="field" id="cv" name="cv" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+          <p class="text-xs text-slate-500 mt-1" data-i18n="register.cvHint">PDF, DOC or DOCX, up to 5 MB.</p>
+        </div>
+        <p id="error" class="hidden text-sm text-miss" role="alert"></p>
+        <button class="btn btn-primary w-full" type="submit" id="submitBtn" data-i18n="register.submitBtn">Create account</button>
+        <p class="text-sm text-slate-600 text-center"><span data-i18n="register.haveAccount">Already have an account?</span> <a class="text-brand font-semibold" href="/login.html" data-i18n="nav.login">Log in</a></p>
+      </form>
+    </div>
+  </main>
+  <div id="footer"></div>
+  <script src="/js/app.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/pages/register.js"></script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin panel | Skill2Job</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tw-config.js"></script>
+  <link rel="stylesheet" href="/css/app.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="nav"></div>
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-8">
+    <h1 class="font-display text-3xl font-bold text-ink" data-i18n="nav.adminPanel">Admin panel</h1>
+    <div class="mt-5 flex flex-wrap gap-2" role="tablist" id="tabs">
+      <button class="tab active" role="tab" data-tab="overview" aria-selected="true" data-i18n="admin.tabOverview">Overview</button>
+      <button class="tab" role="tab" data-tab="skills" aria-selected="false" data-i18n="admin.tabSkills">Skills</button>
+      <button class="tab" role="tab" data-tab="courses" aria-selected="false" data-i18n="admin.tabCourses">Courses</button>
+      <button class="tab" role="tab" data-tab="users" aria-selected="false" data-i18n="admin.tabUsers">Users</button>
+      <button class="tab" role="tab" data-tab="jobs" aria-selected="false" data-i18n="nav.jobs">Jobs</button>
+      <button class="tab" role="tab" data-tab="payments" aria-selected="false" data-i18n="admin.tabPayments">Payments</button>
+      <button class="tab" role="tab" data-tab="reviews" aria-selected="false"><span data-i18n="admin.tabReviews">Reviews</span> <span id="reviewBadge" class="count-badge hidden"></span></button>
+      <button class="tab" role="tab" data-tab="questions" aria-selected="false" data-i18n="admin.tabQuestions">Question bank</button>
+      <button class="tab" role="tab" data-tab="audit" aria-selected="false" data-i18n="admin.tabAudit">Audit log</button>
+    </div>
+
+    <!-- Overview -->
+    <section data-panel="overview" class="mt-6">
+      <div id="totals" class="grid grid-cols-2 lg:grid-cols-4 gap-4"></div>
+      <div class="mt-6 grid lg:grid-cols-3 gap-6">
+        <div class="panel p-5 lg:col-span-2">
+          <h2 class="font-display text-lg font-bold text-ink" data-i18n="admin.topSkillsHeading">Most demanded skills in open jobs</h2>
+          <div class="mt-4 h-72"><canvas id="topSkillsChart" aria-label="Most demanded skills chart"></canvas></div>
+        </div>
+        <div class="panel p-5">
+          <h2 class="font-display text-lg font-bold text-ink" data-i18n="admin.usersByRole">Users by role</h2>
+          <div class="mt-4 h-72"><canvas id="rolesChart" aria-label="Users by role chart"></canvas></div>
+        </div>
+      </div>
+      <div class="panel p-5 mt-6">
+        <h2 class="font-display text-lg font-bold text-ink" data-i18n="admin.jobsPerMonth">Jobs posted per month</h2>
+        <div class="mt-4 h-56"><canvas id="monthChart" aria-label="Jobs per month chart"></canvas></div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section data-panel="skills" class="mt-6 hidden grid lg:grid-cols-3 gap-6">
+      <form id="skillForm" class="panel p-5 space-y-4 h-fit" novalidate>
+        <h2 class="font-display text-lg font-bold text-ink" id="skillFormTitle">Add a skill</h2>
+        <input type="hidden" name="id">
+        <div><label class="label" for="sName" data-i18n="common.name">Name</label><input class="field" id="sName" name="name" maxlength="50" required></div>
+        <div><label class="label" for="sCategory" data-i18n="common.category">Category</label><input class="field" id="sCategory" name="category" maxlength="50" required list="categoryList"><datalist id="categoryList"></datalist></div>
+        <div><label class="label" for="sAliases" data-i18n="admin.otherSpellings">Other spellings</label><input class="field" id="sAliases" name="aliases" placeholder="Comma separated, e.g. ReactJS, React.js"></div>
+        <div class="flex gap-2"><button class="btn btn-primary" type="submit" id="skillSave" data-i18n="common.addSkill">Add skill</button><button class="btn btn-ghost hidden" type="button" id="skillCancel" data-i18n="common.cancel">Cancel</button></div>
+      </form>
+      <div class="panel lg:col-span-2 overflow-x-auto">
+        <div class="p-4"><input class="field" id="skillFilter" placeholder="Filter skills" data-i18n-placeholder="admin.filterSkillsPlaceholder"></div>
+        <div id="skillTable"></div>
+      </div>
+    </section>
+
+    <!-- Courses -->
+    <section data-panel="courses" class="mt-6 hidden grid lg:grid-cols-3 gap-6">
+      <form id="courseForm" class="panel p-5 space-y-4 h-fit" novalidate>
+        <h2 class="font-display text-lg font-bold text-ink" id="courseFormTitle">Add a course</h2>
+        <input type="hidden" name="id">
+        <div><label class="label" for="cTitle" data-i18n="common.title">Title</label><input class="field" id="cTitle" name="title" maxlength="150" required></div>
+        <div class="grid grid-cols-2 gap-3">
+          <div><label class="label" for="cPlatform" data-i18n="common.platform">Platform</label><input class="field" id="cPlatform" name="platform" maxlength="60" required></div>
+          <div><label class="label" for="cLevel" data-i18n="admin.courseLevel">Level (1-5)</label><select class="field" id="cLevel" name="level"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></div>
+        </div>
+        <div><label class="label" for="cUrl" data-i18n="common.link">Link</label><input class="field" id="cUrl" name="url" type="url" maxlength="300" placeholder="https://" required></div>
+        <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="free" id="cFree" checked> <span data-i18n="admin.freeCourse">Free course</span></label>
+        <div><label class="label" for="cSkills" data-i18n="admin.skillsTaught">Skills taught</label><select class="field h-36" id="cSkills" name="skillIds" multiple></select>
+          <p class="text-xs text-slate-500 mt-1" data-i18n="admin.holdCtrl">Hold Ctrl (Cmd on Mac) to select several.</p></div>
+        <div class="flex gap-2"><button class="btn btn-primary" type="submit" id="courseSave" data-i18n="admin.addCourseBtn">Add course</button><button class="btn btn-ghost hidden" type="button" id="courseCancel" data-i18n="common.cancel">Cancel</button></div>
+      </form>
+      <div class="panel lg:col-span-2 overflow-x-auto"><div id="courseTable"></div></div>
+    </section>
+
+    <!-- Users -->
+    <section data-panel="users" class="mt-6 hidden">
+      <div class="panel overflow-x-auto">
+        <div class="p-4 flex flex-wrap gap-3 items-end">
+          <div><label class="label" for="roleFilter" data-i18n="admin.roleLabel">Role</label>
+            <select class="field" id="roleFilter"><option value="" data-i18n="admin.roleAll">All</option><option value="STUDENT" data-i18n="admin.roleStudents">Students</option><option value="EMPLOYER" data-i18n="admin.roleEmployers">Employers</option><option value="ADMIN" data-i18n="admin.roleAdmins">Admins</option></select></div>
+        </div>
+        <div id="userTable"></div>
+        <div id="userPager" class="p-4 flex items-center justify-center gap-3"></div>
+      </div>
+      <div id="endorseBox" class="panel mt-4 p-5 hidden"></div>
+    </section>
+
+    <!-- Jobs -->
+    <section data-panel="jobs" class="mt-6 hidden">
+      <div class="panel overflow-x-auto">
+        <div class="p-4 text-sm text-slate-500" data-i18n="admin.openJobsHint">Open jobs. Delete removes the job and its applications.</div>
+        <div id="jobTable"></div>
+        <div id="jobPager" class="p-4 flex items-center justify-center gap-3"></div>
+      </div>
+    </section>
+    <!-- Payments -->
+    <section data-panel="payments" class="mt-6 hidden">
+      <div id="payTotals" class="grid grid-cols-2 lg:grid-cols-4 gap-4"></div>
+      <section class="panel p-5 mt-6">
+        <h2 class="font-display text-lg font-bold text-ink" data-i18n="admin.revenuePerMonth">Revenue per month (BDT)</h2>
+        <div class="mt-4 h-60"><canvas id="revenueChart" aria-label="Revenue per month chart"></canvas></div>
+      </section>
+      <section class="panel mt-6 overflow-x-auto">
+        <h2 class="font-display text-lg font-bold text-ink p-5 pb-0" data-i18n="admin.recentPayments">Recent transactions</h2>
+        <div id="payTable" class="mt-3"></div>
+      </section>
+    </section>
+
+    <!-- Reviews moderation -->
+    <section data-panel="reviews" class="mt-6 hidden">
+      <div class="panel p-4 flex flex-wrap items-end gap-3">
+        <div><label class="label" for="reviewStatus" data-i18n="common.status">Status</label>
+          <select class="field" id="reviewStatus">
+            <option value="PENDING" data-i18n="admin.revPending">Pending</option>
+            <option value="APPROVED" data-i18n="admin.revApproved">Approved</option>
+            <option value="REJECTED" data-i18n="admin.revRejected">Rejected</option>
+            <option value="" data-i18n="admin.roleAll">All</option>
+          </select></div>
+      </div>
+      <div id="reviewList" class="mt-4 space-y-3"></div>
+    </section>
+
+    <!-- Question bank -->
+    <section data-panel="questions" class="mt-6 hidden">
+      <div class="panel p-4 flex flex-wrap items-end gap-3">
+        <div><label class="label" for="qbKind" data-i18n="admin.qbKind">Bank</label>
+          <select class="field" id="qbKind"><option value="quiz" data-i18n="admin.qbQuiz">Skill test (MCQ)</option><option value="interview" data-i18n="admin.qbInterview">Mock interview</option></select></div>
+        <div><label class="label" for="qbSkill" data-i18n="common.skill">Skill</label>
+          <select class="field" id="qbSkill"><option value="" data-i18n="admin.allSkills">All skills</option></select></div>
+        <button class="btn btn-primary ml-auto" type="button" id="qbNew" data-i18n="admin.qbNew">New question</button>
+      </div>
+      <div class="panel mt-4 overflow-x-auto"><div id="qbTable"></div></div>
+    </section>
+
+    <!-- Audit log -->
+    <section data-panel="audit" class="mt-6 hidden">
+      <form id="auditFilters" class="panel p-4 grid sm:grid-cols-2 lg:grid-cols-6 gap-3 items-end" novalidate>
+        <div><label class="label" for="auAction" data-i18n="admin.auAction">Action</label><select class="field" id="auAction"><option value="" data-i18n="admin.roleAll">All</option></select></div>
+        <div><label class="label" for="auActor" data-i18n="admin.auActor">User email</label><input class="field" id="auActor" maxlength="120"></div>
+        <div><label class="label" for="auSuccess" data-i18n="admin.auResult">Result</label><select class="field" id="auSuccess"><option value="" data-i18n="admin.roleAll">All</option><option value="true" data-i18n="admin.auOk">Success</option><option value="false" data-i18n="admin.auFail">Failed</option></select></div>
+        <div><label class="label" for="auFrom" data-i18n="admin.auFrom">From</label><input class="field" id="auFrom" type="date"></div>
+        <div><label class="label" for="auTo" data-i18n="admin.auTo">To</label><input class="field" id="auTo" type="date"></div>
+        <button class="btn btn-primary" type="submit" data-i18n="common.filter">Filter</button>
+      </form>
+      <div class="panel mt-4 overflow-x-auto"><div id="auditTable"></div><div id="auditPager" class="p-4 flex items-center justify-center gap-3"></div></div>
+    </section>
+  </main>
+  <div id="footer"></div>
+  <script src="/js/app.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/pages/admin.js"></script>
+  <script src="/js/pages/admin-extra.js"></script>
+</body>
+</html>

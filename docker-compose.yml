@@ -1,0 +1,28 @@
+# Local run with Docker: starts MongoDB + the app.  Command: docker compose up --build
+services:
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/skill2job
+      SPRING_PROFILES_ACTIVE: dev
+      JWT_SECRET: local-docker-secret-change-me-0123456789abcdef
+      CV_UPLOAD_DIR: /data/cv
+      LOGO_UPLOAD_DIR: /data/logos
+      # Leave MAIL_USERNAME/MAIL_PASSWORD unset to just read the OTP from `docker compose logs app`.
+    volumes:
+      - cv-uploads:/data/cv
+      - logo-uploads:/data/logos
+    depends_on:
+      - mongo
+volumes:
+  mongo-data:
+  cv-uploads:
+  logo-uploads:

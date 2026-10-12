@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Payment result | Skill2Job</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tw-config.js"></script>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="nav"></div>
+  <main class="flex-1 flex items-start justify-center px-4 py-12">
+    <div class="w-full max-w-md panel p-6 text-center">
+      <div id="resultIcon" class="text-5xl mb-3">&#9203;</div>
+      <h1 class="font-display text-2xl font-bold text-ink" id="resultTitle">Checking payment...</h1>
+      <p class="text-slate-500 mt-2" id="resultDetail"></p>
+      <a class="btn btn-primary mt-6 inline-block" id="backLink" href="/" data-i18n="paymentResult.backToDashboard">Back to dashboard</a>
+    </div>
+  </main>
+  <div id="footer"></div>
+  <script src="/js/app.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/pages/payment-result.js"></script>
+</body>
+</html>

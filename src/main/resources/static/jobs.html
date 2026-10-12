@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jobs | Skill2Job</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/tw-config.js"></script>
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body class="min-h-screen flex flex-col">
+  <div id="nav"></div>
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-8">
+    <div class="flex flex-wrap items-end justify-between gap-3">
+      <div>
+        <h1 class="font-display text-3xl sm:text-4xl font-bold text-ink"><span data-i18n="nav.jobs">Jobs</span><span class="type-cursor">_</span></h1>
+        <p class="text-slate-600 mt-1" id="subtitle">Open jobs and internships.</p>
+      </div>
+      <button type="button" id="saveAlertBtn" class="btn btn-ghost hidden">🔔 <span data-i18n="jobs.saveAlert">Save this search as an alert</span></button>
+    </div>
+
+    <form id="filters" class="panel p-4 mt-6 grid sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr_1fr_auto] gap-3 items-end" novalidate>
+      <div><label class="label" for="keyword" data-i18n="jobs.searchLabel">Search</label><input class="field" id="keyword" name="keyword" placeholder="Title, company or keyword" data-i18n-placeholder="jobs.searchPlaceholder"></div>
+      <div><label class="label" for="type" data-i18n="jobs.typeLabel">Type</label>
+        <select class="field" id="type" name="type">
+          <option value="" data-i18n="jobs.typeAny">Any</option><option value="INTERNSHIP" data-i18n="jobs.typeInternship">Internship</option>
+          <option value="FULL_TIME" data-i18n="jobs.typeFullTime">Full-time</option><option value="PART_TIME" data-i18n="jobs.typePartTime">Part-time</option>
+        </select></div>
+      <div><label class="label" for="location" data-i18n="common.location">Location</label><input class="field" id="location" name="location" placeholder="e.g. Dhaka" data-i18n-placeholder="jobs.locationPlaceholder"></div>
+      <div><label class="label" for="skillId" data-i18n="jobs.skillLabel">Skill</label><select class="field" id="skillId" name="skillId"><option value="" data-i18n="jobs.typeAny">Any</option></select></div>
+      <div><label class="label" for="sort" data-i18n="jobs.sortLabel">Sort by</label><select class="field" id="sort" name="sort"></select></div>
+      <button class="btn btn-primary" type="submit" data-i18n="jobs.searchBtn">Search</button>
+    </form>
+
+    <div id="results" class="mt-6"></div>
+    <div id="pager" class="mt-6 flex items-center justify-center gap-3"></div>
+  </main>
+  <div id="compareBar" class="hidden fixed bottom-4 left-1/2 -translate-x-1/2 panel px-5 py-3 shadow-lg flex items-center gap-3 z-40">
+    <span class="text-sm font-semibold text-ink"><span id="compareCount">0</span> <span data-i18n="jobs.selected">selected</span></span>
+    <a class="btn btn-primary btn-sm" id="compareGo" href="#" data-i18n="jobs.compareBtn">Compare</a>
+    <button class="btn btn-ghost btn-sm" id="compareClear" type="button" data-i18n="jobs.clearBtn">Clear</button>
+  </div>
+  <div id="footer"></div>
+  <script src="/js/app.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/pages/jobs.js"></script>
+</body>
+</html>
